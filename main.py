@@ -14,8 +14,7 @@ from quant_engine import QuantEngine
 from portfolio_health import PortfolioHealthAnalyzer
 from scenario_simulator import MonteCarloSimulator
 from substitution_engine import SmartSubstitutionEngine
-from sentiment_analyzer import SentimentAnalyzer
-from xai_layer import XAILayer
+from sentiment_xai import SentimentAnalyzer, XAILayer
 
 app = FastAPI(
     title="Financial Decision Intelligence Engine",

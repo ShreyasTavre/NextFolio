@@ -261,12 +261,13 @@ if run_btn:
         # Risk-Return Scatter
         st.subheader("Risk-Return Scatter")
         rr = quant.risk_return_table()
+        rr["Sharpe"] = rr["Sharpe"].abs()  # Ensure positive values for bubble size
         fig_scatter = px.scatter(
             rr.reset_index(),
             x="Volatility", y="Annual_Return",
             size="Sharpe", color="RSI",
             text="Ticker",
-            title="Risk vs Return (bubble size = Sharpe Ratio)",
+            title="Risk vs Return (bubble size = |Sharpe Ratio|)",
             template="plotly_dark",
             color_continuous_scale="RdYlGn",
         )
@@ -356,9 +357,9 @@ if run_btn:
                         "axis": {"range": [0, 100]},
                         "bar":  {"color": "#00d4ff"},
                         "steps": [
-                            {"range": [0, 30], "color": "#ff4b4b33"},
-                            {"range": [30, 70], "color": "#ffa50033"},
-                            {"range": [70, 100], "color": "#00d46433"},
+                            {"range": [0, 30], "color": "rgba(255, 75, 75, 0.2)"},
+                            {"range": [30, 70], "color": "rgba(255, 165, 0, 0.2)"},
+                            {"range": [70, 100], "color": "rgba(0, 212, 100, 0.2)"},
                         ],
                         "threshold": {"line": {"color": "white", "width": 2}, "value": sent_val},
                     },
